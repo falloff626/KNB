@@ -1,0 +1,41 @@
+class Todo {
+    private tasks: string[] = [];
+
+    addTask(task: string): void {
+        this.tasks.push(task);
+        console.log(`Task "${task}" added to the list.`);
+    }
+
+    removeTask(task: string): void {
+        const index = this.tasks.indexOf(task);
+        if (index > -1) {
+            this.tasks.splice(index, 1);
+            console.log(`Task "${task}" removed from the list.`);
+        } else {
+            console.log(`Task "${task}" not found in the list.`);
+        }
+    }
+
+    listTasks(): void {
+        if (this.tasks.length === 0) {
+            console.log("No tasks in the list.");
+        } else {
+            console.log("Tasks in the list:");
+            this.tasks.forEach((task, index) => {
+                console.log(`${index + 1}. ${task}`);
+            });
+        }
+    }
+}
+
+// Пример использования
+const myTodo = new Todo();
+
+myTodo.addTask("Learn TypeScript");
+myTodo.addTask("Build a todo list app");
+myTodo.listTasks();
+
+myTodo.removeTask("Learn TypeScript");
+myTodo.listTasks();
+
+myTodo.removeTask("Go shopping"); // Это задача не в списке, будет сообщение об ошибке
